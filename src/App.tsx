@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import { UsersList } from "./features/usersList";
 
 function App() {
-  return <div className="App"></div>;
+  return <UsersList />;
 }
 
 export default App;
