@@ -4,8 +4,9 @@ import {
   ThunkAction,
   Action,
 } from "@reduxjs/toolkit";
+import usersReducer from "./usersSlice";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({ usersReducer });
 
 export const store = configureStore({
   reducer: rootReducer,

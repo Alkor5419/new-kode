@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import InterBold from "./fonts/Inter-Bold.ttf";
-import InterMedium from "./fonts/Inter-Medium.ttf";
-import InterSemiBold from "./fonts/Inter-SemiBold.ttf";
-import InterRegular from "./fonts/Inter-Regular.ttf";
+import InterBold from "../../assets/fonts/Inter-Bold.ttf";
+import InterMedium from "../../assets/fonts/Inter-Medium.ttf";
+import InterSemiBold from "../../assets/fonts/Inter-SemiBold.ttf";
+import InterRegular from "../../assets/fonts/Inter-Regular.ttf";
 
 export const GlobalStyles = createGlobalStyle`
   ${normalize}
