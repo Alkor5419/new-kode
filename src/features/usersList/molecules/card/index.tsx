@@ -107,7 +107,7 @@ export const Card: React.FC<IProps> = ({ list }) => {
     <Wrap>
       {list.map((el, ind) => {
         if (
-          moment(list[ind + 1]?.birthday).year() !== year
+          moment(list[ind + 1]?.birthday)?.year() !== year
         ) {
           year = moment(el.birthday).year();
         }

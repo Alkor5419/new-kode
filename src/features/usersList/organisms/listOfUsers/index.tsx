@@ -9,6 +9,7 @@ import { Card } from "../../molecules/card";
 import { Departments } from "../../molecules/departments";
 import { Modal } from "../../molecules/modal";
 import { SearchInput } from "../../molecules/searchInput";
+import { Skeleton } from "../../molecules/skeleton";
 
 const Title = styled.h1`
   font-family: "InterBold";
@@ -31,14 +32,16 @@ export const ListOfUsers = () => {
   const isModal = useAppSelector(
     (state) => state.usersReducer.isModalOpen
   );
-
+  const isLoading = useAppSelector(
+    (state) => state.usersReducer.loading
+  );
   return (
     <>
       {isModal ? <Modal /> : null}
       <Title>Поиск</Title>
       <SearchInput />
       <Departments />
-      <Card list={list} />
+      {!isLoading ? <Card list={list} /> : <Skeleton />}
     </>
   );
 };
