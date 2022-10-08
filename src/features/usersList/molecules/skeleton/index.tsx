@@ -1,0 +1,152 @@
+import React from "react";
+import ContentLoader from "react-content-loader";
+
+export const Skeleton = () => {
+  return (
+    <ContentLoader
+      speed={2}
+      width={400}
+      height={900}
+      viewBox="0 0 400 900"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect
+        x="104"
+        y="24"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="46"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="40" r="36" />
+      <rect
+        x="104"
+        y="120"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="142"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="136" r="36" />
+      <rect
+        x="104"
+        y="216"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="238"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="232" r="36" />
+      <rect
+        x="104"
+        y="312"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="334"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="328" r="36" />
+      <rect
+        x="104"
+        y="408"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="430"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="424" r="36" />
+      <rect
+        x="104"
+        y="504"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="526"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="520" r="36" />
+      <rect
+        x="104"
+        y="600"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="622"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="616" r="36" />
+      <rect
+        x="104"
+        y="696"
+        rx="3"
+        ry="3"
+        width="144"
+        height="16"
+      />
+      <rect
+        x="104"
+        y="718"
+        rx="3"
+        ry="3"
+        width="80"
+        height="12"
+      />
+      <circle cx="56" cy="712" r="36" />
+    </ContentLoader>
+  );
+};
