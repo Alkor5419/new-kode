@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getUsers } from "../../../../app/store/usersSlice";
 import {
@@ -7,6 +7,7 @@ import {
 } from "../../../../utils/hooks/redux";
 import { Card } from "../../molecules/card";
 import { Departments } from "../../molecules/departments";
+import { ErrorMessage } from "../../molecules/error-message";
 import { Modal } from "../../molecules/modal";
 import { SearchInput } from "../../molecules/searchInput";
 import { Skeleton } from "../../molecules/skeleton";
@@ -22,6 +23,8 @@ const Title = styled.h1`
 `;
 
 export const ListOfUsers = () => {
+  const [department, setDepartment] =
+    useState<string>("all");
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUsers());
@@ -35,13 +38,25 @@ export const ListOfUsers = () => {
   const isLoading = useAppSelector(
     (state) => state.usersReducer.loading
   );
+  const isError = useAppSelector(
+    (state) => state.usersReducer.error
+  );
   return (
     <>
       {isModal ? <Modal /> : null}
       <Title>Поиск</Title>
       <SearchInput />
-      <Departments />
-      {!isLoading ? <Card list={list} /> : <Skeleton />}
+      <Departments
+        department={department}
+        setDepartment={setDepartment}
+      />
+      {isError ? (
+        <ErrorMessage setDepartment={setDepartment} />
+      ) : !isLoading ? (
+        <Card list={list} />
+      ) : (
+        <Skeleton />
+      )}
     </>
   );
 };

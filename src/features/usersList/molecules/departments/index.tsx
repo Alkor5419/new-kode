@@ -99,10 +99,16 @@ const Line = styled.div`
   margin-top: -17px;
   margin-bottom: 22px;
 `;
-export const Departments = () => {
+interface IProps {
+  department: string;
+  setDepartment: (arg: string) => void;
+}
+export const Departments: React.FC<IProps> = ({
+  department,
+  setDepartment,
+}) => {
   const dispatch = useAppDispatch();
-  const [department, setDepartment] =
-    useState<string>("all");
+
   const onClickAllDep = () => {
     setDepartment("all");
     dispatch(getUsers());
