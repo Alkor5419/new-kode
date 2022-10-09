@@ -16,19 +16,25 @@ interface Users {
 }
 type UsersState = {
   list: Users[];
+  listCopy: Users[];
   loading: boolean;
   error: string | unknown;
   isModalOpen: boolean;
   isAlphabetSort: boolean;
   isDateSort: boolean;
+  filter: string;
+  notFound: boolean;
 };
 const initialState: UsersState = {
   list: [],
+  listCopy: [],
   loading: false,
   error: null,
   isModalOpen: false,
   isAlphabetSort: true,
   isDateSort: false,
+  filter: "",
+  notFound: false,
 };
 export const getUsers = createAsyncThunk(
   "users/get-users",
@@ -125,6 +131,54 @@ const usersSlice = createSlice({
           Date.parse(b.birthday) - Date.parse(a.birthday)
       );
     },
+    changeFilter: (state, action) => {
+      state.filter = action.payload;
+      if (state.filter === "") {
+        state.list = state.listCopy;
+        state.notFound = false;
+      } else if (
+        state.list.find(
+          (el) =>
+            el.firstName.toLowerCase() ===
+            action.payload.toLowerCase()
+        )
+      ) {
+        state.list = state.list.filter(
+          (el) =>
+            el.firstName.toLowerCase() ===
+            action.payload.toLowerCase()
+        );
+        state.notFound = false;
+      } else if (
+        state.list.find(
+          (el) =>
+            el.lastName.toLowerCase() ===
+            action.payload.toLowerCase()
+        )
+      ) {
+        state.list = state.list.filter(
+          (el) =>
+            el.lastName.toLowerCase() ===
+            action.payload.toLowerCase()
+        );
+        state.notFound = false;
+      } else if (
+        state.list.find(
+          (el) =>
+            el.userTag.toLowerCase() ===
+            action.payload.toLowerCase()
+        )
+      ) {
+        state.list = state.list.filter(
+          (el) =>
+            el.userTag.toLowerCase() ===
+            action.payload.toLowerCase()
+        );
+        state.notFound = false;
+      } else {
+        state.notFound = true;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -138,6 +192,10 @@ const usersSlice = createSlice({
       .addCase(getUsers.fulfilled, (state, action) => {
         state.loading = false;
         state.list = action.payload.sort(
+          (a: Users, b: Users) =>
+            a.firstName > b.firstName ? 1 : -1
+        );
+        state.listCopy = action.payload.sort(
           (a: Users, b: Users) =>
             a.firstName > b.firstName ? 1 : -1
         );
@@ -157,6 +215,10 @@ const usersSlice = createSlice({
         (state, action) => {
           state.loading = false;
           state.list = action.payload.sort(
+            (a: Users, b: Users) =>
+              a.firstName > b.firstName ? 1 : -1
+          );
+          state.listCopy = action.payload.sort(
             (a: Users, b: Users) =>
               a.firstName > b.firstName ? 1 : -1
           );
@@ -180,6 +242,10 @@ const usersSlice = createSlice({
             (a: Users, b: Users) =>
               a.firstName > b.firstName ? 1 : -1
           );
+          state.listCopy = action.payload.sort(
+            (a: Users, b: Users) =>
+              a.firstName > b.firstName ? 1 : -1
+          );
         }
       )
       .addCase(getUsersManagement.pending, (state) => {
@@ -200,6 +266,10 @@ const usersSlice = createSlice({
             (a: Users, b: Users) =>
               a.firstName > b.firstName ? 1 : -1
           );
+          state.listCopy = action.payload.sort(
+            (a: Users, b: Users) =>
+              a.firstName > b.firstName ? 1 : -1
+          );
         }
       )
       .addCase(getUsersIos.pending, (state) => {
@@ -212,6 +282,10 @@ const usersSlice = createSlice({
       .addCase(getUsersIos.fulfilled, (state, action) => {
         state.loading = false;
         state.list = action.payload.sort(
+          (a: Users, b: Users) =>
+            a.firstName > b.firstName ? 1 : -1
+        );
+        state.listCopy = action.payload.sort(
           (a: Users, b: Users) =>
             a.firstName > b.firstName ? 1 : -1
         );
@@ -234,11 +308,19 @@ const usersSlice = createSlice({
             (a: Users, b: Users) =>
               a.firstName < b.firstName ? 1 : -1
           );
+          state.listCopy = action.payload.sort(
+            (a: Users, b: Users) =>
+              a.firstName < b.firstName ? 1 : -1
+          );
         }
       );
   },
 });
 export default usersSlice.reducer;
 
-export const { toggleModal, alphabetSort, dateSort } =
-  usersSlice.actions;
+export const {
+  toggleModal,
+  alphabetSort,
+  dateSort,
+  changeFilter,
+} = usersSlice.actions;
