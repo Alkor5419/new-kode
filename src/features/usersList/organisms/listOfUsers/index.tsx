@@ -9,6 +9,7 @@ import { Card } from "../../molecules/card";
 import { Departments } from "../../molecules/departments";
 import { ErrorMessage } from "../../molecules/error-message";
 import { Modal } from "../../molecules/modal";
+import { NotFound } from "../../molecules/notFound";
 import { SearchInput } from "../../molecules/searchInput";
 import { Skeleton } from "../../molecules/skeleton";
 
@@ -41,6 +42,9 @@ export const ListOfUsers = () => {
   const isError = useAppSelector(
     (state) => state.usersReducer.error
   );
+  const isNotFound = useAppSelector(
+    (state) => state.usersReducer.notFound
+  );
   return (
     <>
       {isModal ? <Modal /> : null}
@@ -52,6 +56,8 @@ export const ListOfUsers = () => {
       />
       {isError ? (
         <ErrorMessage setDepartment={setDepartment} />
+      ) : isNotFound ? (
+        <NotFound />
       ) : !isLoading ? (
         <Card list={list} />
       ) : (

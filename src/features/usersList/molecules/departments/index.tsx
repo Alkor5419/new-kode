@@ -15,6 +15,7 @@ const ListWrapper = styled.ul`
   list-style: none;
   padding: 0;
   margin-left: 16px;
+  overflow: auto;
 `;
 const ListItem = styled.li`
   padding: 5px 8px;

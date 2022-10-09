@@ -3,8 +3,14 @@ import Loop from "../../../../assets/icons/loop.svg";
 import LoopBlack from "../../../../assets/icons/loop-black.svg";
 import Filter from "../../../../assets/icons/filter.svg";
 import styled from "styled-components";
-import { useAppDispatch } from "../../../../utils/hooks/redux";
-import { toggleModal } from "../../../../app/store/usersSlice";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../utils/hooks/redux";
+import {
+  changeFilter,
+  toggleModal,
+} from "../../../../app/store/usersSlice";
 
 const InputWrap = styled.div`
   background-color: #f7f7f8;
@@ -67,6 +73,9 @@ export const SearchInput = () => {
   const [isInputFocus, setIsInputFocus] = useState(false);
   const myRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
+  const filterValue = useAppSelector(
+    (state) => state.usersReducer.filter
+  );
   const handleClick = () => {
     if (null !== myRef.current) {
       myRef.current.focus();
@@ -74,6 +83,11 @@ export const SearchInput = () => {
   };
   const openModal = () => {
     dispatch(toggleModal());
+  };
+  const handleChangeFilter = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    dispatch(changeFilter(event.target.value));
   };
   return (
     <InputWrap>
@@ -91,6 +105,8 @@ export const SearchInput = () => {
           ref={myRef}
           onFocus={() => setIsInputFocus(true)}
           onBlur={() => setIsInputFocus(false)}
+          value={filterValue}
+          onChange={handleChangeFilter}
           placeholder="Введите имя, тег, почту..."
         />
       </InputTextWrap>
