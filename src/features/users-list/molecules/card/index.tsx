@@ -96,7 +96,7 @@ export const Card: React.FC<IProps> = ({ list }) => {
     (state) => state.usersReducer.isDateSort
   );
   let year = moment(list[0]?.birthday)?.year();
-  moment.locale("ru");
+  moment.locale("en");
   return (
     <Wrap>
       {list.map((el, ind) => {
@@ -123,7 +123,7 @@ export const Card: React.FC<IProps> = ({ list }) => {
                 </div>
                 <DateText>
                   {isDateSort
-                    ? moment(el.birthday).format("M")
+                    ? moment(el.birthday).format("D")
                     : null}{" "}
                   {isDateSort
                     ? convertMonth(
