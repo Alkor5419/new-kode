@@ -9,8 +9,8 @@ import { Card } from "../../molecules/card";
 import { Departments } from "../../molecules/departments";
 import { ErrorMessage } from "../../molecules/error-message";
 import { Modal } from "../../molecules/modal";
-import { NotFound } from "../../molecules/notFound";
-import { SearchInput } from "../../molecules/searchInput";
+import { NotFound } from "../../molecules/not-found";
+import { SearchInput } from "../../molecules/search-input";
 import { Skeleton } from "../../molecules/skeleton";
 
 const Title = styled.h1`

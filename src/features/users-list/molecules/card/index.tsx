@@ -1,17 +1,21 @@
 import moment from "moment";
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { User } from "../../../../shared/model";
 import { convert } from "../../../../utils/convertDepartment";
 import { convertMonth } from "../../../../utils/convertMonth";
 import { useAppSelector } from "../../../../utils/hooks/redux";
+
 const Wrap = styled.div`
   margin: 0 16px;
 `;
-const ListWrap = styled.div`
+const ListWrap = styled(Link)`
   display: flex;
   align-items: center;
   margin-bottom: 12px;
   cursor: pointer;
+  text-decoration: none;
 `;
 const Name = styled.span`
   font-family: "InterMedium";
@@ -83,19 +87,9 @@ const DateText = styled.div`
   line-height: 20px;
   color: #55555c;
 `;
-interface List {
-  id: string;
-  avatarUrl: string;
-  firstName: string;
-  lastName: string;
-  userTag: string;
-  department: string;
-  position: string;
-  birthday: string;
-  phone: string;
-}
+
 interface IProps {
-  list: List[];
+  list: User[];
 }
 export const Card: React.FC<IProps> = ({ list }) => {
   const isDateSort = useAppSelector(
@@ -113,7 +107,7 @@ export const Card: React.FC<IProps> = ({ list }) => {
         }
         return (
           <>
-            <ListWrap key={el.id}>
+            <ListWrap key={el.id} to={`/users/${el.id}`}>
               <UserImg src={el.avatarUrl} alt="avatar" />
               <CartWrap>
                 <div>

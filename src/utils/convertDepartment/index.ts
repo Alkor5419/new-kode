@@ -1,4 +1,4 @@
-export const convert = (department: string) => {
+export const convert = (department: string | undefined) => {
   switch (department) {
     case "android":
       return "Android";
