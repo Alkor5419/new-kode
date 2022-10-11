@@ -8,6 +8,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { UserProfile } from "../features/user-page/organisms/user-profile";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ListOfUsers />} />
           <Route
-            path="/user/:id"
+            path="/users/:id"
             element={<UserProfile />}
           />
         </Routes>

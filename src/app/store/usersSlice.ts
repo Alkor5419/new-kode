@@ -3,20 +3,11 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 import users from "../../api/users";
-interface Users {
-  id: string;
-  avatarUrl: string;
-  firstName: string;
-  lastName: string;
-  userTag: string;
-  department: string;
-  position: string;
-  birthday: string;
-  phone: string;
-}
+import { User } from "../../shared/model";
+
 type UsersState = {
-  list: Users[];
-  listCopy: Users[];
+  list: User[];
+  listCopy: User[];
   loading: boolean;
   error: string | unknown;
   isModalOpen: boolean;
@@ -41,7 +32,6 @@ export const getUsers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await users.getUsersAPI();
-      console.log(res.data);
       return res.data.items;
     } catch (e) {
       return rejectWithValue(e);
@@ -53,7 +43,6 @@ export const getUsersDesigners = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await users.getUsersDesignersAPI();
-      console.log(res.data);
       return res.data.items;
     } catch (e) {
       return rejectWithValue(e);
@@ -65,7 +54,6 @@ export const getUsersAnalytics = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await users.getUsersAnalyticsAPI();
-      console.log(res.data);
       return res.data.items;
     } catch (e) {
       return rejectWithValue(e);
@@ -77,7 +65,6 @@ export const getUsersManagement = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await users.getUsersManagementAPI();
-      console.log(res.data);
       return res.data.items;
     } catch (e) {
       return rejectWithValue(e);
@@ -89,7 +76,6 @@ export const getUsersIos = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await users.getUsersIosAPI();
-      console.log(res.data);
       return res.data.items;
     } catch (e) {
       return rejectWithValue(e);
@@ -101,7 +87,6 @@ export const getUsersAndroid = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await users.getUsersAndroidAPI();
-      console.log(res.data);
       return res.data.items;
     } catch (e) {
       return rejectWithValue(e);
@@ -192,11 +177,11 @@ const usersSlice = createSlice({
       .addCase(getUsers.fulfilled, (state, action) => {
         state.loading = false;
         state.list = action.payload.sort(
-          (a: Users, b: Users) =>
+          (a: User, b: User) =>
             a.firstName > b.firstName ? 1 : -1
         );
         state.listCopy = action.payload.sort(
-          (a: Users, b: Users) =>
+          (a: User, b: User) =>
             a.firstName > b.firstName ? 1 : -1
         );
       })
@@ -215,11 +200,11 @@ const usersSlice = createSlice({
         (state, action) => {
           state.loading = false;
           state.list = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName > b.firstName ? 1 : -1
           );
           state.listCopy = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName > b.firstName ? 1 : -1
           );
         }
@@ -239,11 +224,11 @@ const usersSlice = createSlice({
         (state, action) => {
           state.loading = false;
           state.list = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName > b.firstName ? 1 : -1
           );
           state.listCopy = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName > b.firstName ? 1 : -1
           );
         }
@@ -263,11 +248,11 @@ const usersSlice = createSlice({
         (state, action) => {
           state.loading = false;
           state.list = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName > b.firstName ? 1 : -1
           );
           state.listCopy = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName > b.firstName ? 1 : -1
           );
         }
@@ -282,11 +267,11 @@ const usersSlice = createSlice({
       .addCase(getUsersIos.fulfilled, (state, action) => {
         state.loading = false;
         state.list = action.payload.sort(
-          (a: Users, b: Users) =>
+          (a: User, b: User) =>
             a.firstName > b.firstName ? 1 : -1
         );
         state.listCopy = action.payload.sort(
-          (a: Users, b: Users) =>
+          (a: User, b: User) =>
             a.firstName > b.firstName ? 1 : -1
         );
       })
@@ -305,11 +290,11 @@ const usersSlice = createSlice({
         (state, action) => {
           state.loading = false;
           state.list = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName < b.firstName ? 1 : -1
           );
           state.listCopy = action.payload.sort(
-            (a: Users, b: Users) =>
+            (a: User, b: User) =>
               a.firstName < b.firstName ? 1 : -1
           );
         }
